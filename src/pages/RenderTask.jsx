@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaTrash } from "react-icons/fa";
 
 const RenderTask = ({ taskList = [], deleteTask, seeDescription }) => {

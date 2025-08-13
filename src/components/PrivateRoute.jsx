@@ -10,7 +10,7 @@ function PrivateRoute({ children }) {
     const checkAuth = async () => {
       try {
         const res = await axios.get("http://localhost:3001/me", {
-          withCredentials: true, // This is crucial
+          withCredentials: true,
         });
         if (res.status === 200) {
           setIsAuthenticated(true);

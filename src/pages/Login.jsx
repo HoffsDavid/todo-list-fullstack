@@ -9,7 +9,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Cria uma instância do axios com a opção para enviar cookies
+
   const axiosInstance = axios.create({ withCredentials: true });
 
   const handleLogin = async (e) => {
@@ -24,8 +24,7 @@ const Login = () => {
       
       const res = await axiosInstance.post(url, { username, password });
       
-      // Se a autenticação for bem-sucedida, o backend envia um cookie
-      // e podemos redirecionar o usuário para a página inicial.
+     
       if (res.status === 200 || res.status === 201) {
         navigate("/home");
         console.log("Autenticação bem-sucedida, redirecionando para /home");

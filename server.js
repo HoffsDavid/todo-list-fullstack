@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 
 dotenv.config();
 
-const app = express(); // 'app' deve ser inicializado primeiro
+const app = express();
 
 const PORT = process.env.PORT || 3001;
 const TOKEN_SECRET = process.env.TOKEN_SECRET;
@@ -17,13 +17,11 @@ const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
 app.use(express.json());
 app.use(cookieParser());
 
-// Configuração do CORS
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true,
 }));
 
-// Conexão com o banco de dados de usuários
 const dbUsers = new sqlite3.Database("./database/users.db", (err) => {
   if (err) return console.error("SQLite erro:", err.message);
   console.log("Conectado ao banco de dados de usuários");
@@ -36,7 +34,7 @@ const dbUsers = new sqlite3.Database("./database/users.db", (err) => {
   );
 });
 
-// Conexão com o banco de dados de tarefas
+
 const dbTasks = new sqlite3.Database("./database/tasks.db", (err) => {
   if (err) return console.error("SQLite erro:", err.message);
   console.log("Conectado ao banco de dados de tarefas");
@@ -51,17 +49,17 @@ const dbTasks = new sqlite3.Database("./database/tasks.db", (err) => {
   );
 });
 
-// Função para gerar o token de acesso
+
 function generateAccessToken(payload) {
   return jwt.sign(payload, TOKEN_SECRET, { expiresIn: "1h" });
 }
 
-// Função para gerar o refresh token
+
 function generateRefreshToken(payload) {
   return jwt.sign(payload, REFRESH_TOKEN_SECRET, { expiresIn: "7d" });
 }
 
-// Middleware para autenticar o token de acesso
+
 function authenticateToken(req, res, next) {
   const token = req.cookies.token;
   if (!token) return res.status(401).json({ error: "Token necessário" });
@@ -73,7 +71,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Rota de registro de usuário
+
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   const hash = await bcrypt.hash(password, 10);
@@ -87,7 +85,7 @@ app.post("/signup", async (req, res) => {
   );
 });
 
-// Rota de login de usuário
+
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
   dbUsers.get(
@@ -118,7 +116,7 @@ app.post("/login", (req, res) => {
   );
 });
 
-// Rota para obter um novo token de acesso usando o refresh token
+
 app.post("/refresh-token", (req, res) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) return res.status(401).json({ error: "Token necessário" });
@@ -137,7 +135,7 @@ app.post("/refresh-token", (req, res) => {
   });
 });
 
-// Rota de logout
+
 app.post("/logout", (req, res) => {
   res.clearCookie("token");
   res.clearCookie("refreshToken");
@@ -148,7 +146,7 @@ app.get("/me", authenticateToken, (req, res) => {
   res.status(200).json({ message: "Autenticado" });
 });
 
-// Rota para obter as tarefas do usuário autenticado
+
 app.get("/tasks", authenticateToken, (req, res) => {
   const userId = req.user.userId;
   dbTasks.all(
@@ -161,7 +159,7 @@ app.get("/tasks", authenticateToken, (req, res) => {
   );
 });
 
-// Rota para criar uma nova tarefa
+
 app.post("/tasks", authenticateToken, (req, res) => {
   const userId = req.user.userId;
   const { title, description } = req.body;
@@ -182,7 +180,6 @@ app.post("/tasks", authenticateToken, (req, res) => {
   );
 });
 
-// Rota para editar a descrição de uma tarefa
 app.put("/tasks/:id", authenticateToken, (req, res) => {
   const userId = req.user.userId;
   const { description } = req.body;
@@ -208,7 +205,7 @@ app.put("/tasks/:id", authenticateToken, (req, res) => {
   );
 });
 
-// Rota para deletar uma tarefa
+
 app.delete("/tasks/:id", authenticateToken, (req, res) => {
   const userId = req.user.userId;
   const id = req.params.id;
@@ -220,7 +217,7 @@ app.delete("/tasks/:id", authenticateToken, (req, res) => {
       if (this.changes === 0)
         return res
           .status(404)
-          .json({ error: "Tarefa não encontrada ou não pertence ao usuário" });
+          .json({ error: "Tarefa não encontrada ou não pertence ao usuário"});
       res.json({ message: "Tarefa deletada com sucesso" });
     }
   );

@@ -21,24 +21,20 @@ function Home() {
       credentials: "include",
     })
       .then((res) => {
-        // Se a resposta não for OK, lança um erro para o .catch
         if (!res.ok) {
           throw new Error("Falha na requisição. Status: " + res.status);
         }
         return res.json();
       })
       .then((data) => {
-        // Garante que o estado 'tasks' seja sempre um array
         if (Array.isArray(data)) {
           setTasks(data);
         } else {
-          // Se a resposta não for um array, redefine para um array vazio e loga o erro
           console.error("Resposta da API não é um array:", data);
           setTasks([]);
         }
       })
       .catch((err) => {
-        // Em caso de qualquer erro (rede ou resposta da API), redefine para um array vazio
         console.error("Erro ao buscar tarefas:", err);
         setTasks([]);
       });
