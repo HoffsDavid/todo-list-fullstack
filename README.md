@@ -1,12 +1,14 @@
-# React + Vite
+# TO DO LIST
+Crie e organize suas tarefas diárias de forma simples e eficiente. Com um sistema de cadastro, o aplicativo garante que cada usuário tenha acesso exclusivo às suas próprias listas, mantendo a privacidade e a organização.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Tecnologias
+- ** Frontend: ** HTML, CSS, Javascript, React e Tailwind
+- ** Backend: ** Node JS, Express, JWT
+- ** Banco de dados: ** SQLite 3
 
-Currently, two official plugins are available:
+# Como rodar o projeto
+1. Clone o repositório
+1. Rode o comando `npm install`
+2. Inicie a aplicação com `npm start`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+** PRONTO! O app estará funcionando.
