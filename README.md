@@ -14,5 +14,5 @@ Crie e organize suas tarefas diárias de forma simples e eficiente. Com um siste
 2. Inicie a aplicação com `npm start`
 
 ** PRONTO! O app estará funcionando.
-
+![Pages](app.jpg)
 
