@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'">
+<title>Projetor Bíblico</title>
+<link rel="stylesheet" href="slide.css">
+<link rel="stylesheet" href="controle.css">
+</head>
+<body>
+<header>
+  <select id="versao" title="Versão da Bíblia"></select>
+  <button id="btnBiblias" title="Baixar, importar ou remover Bíblias">Bíblias…</button>
+  <input id="rapida" type="text" placeholder="Ir para…  ex.: jo 3 16  (Enter projeta)" autocomplete="off" spellcheck="false">
+  <span class="espaco"></span>
+  <select id="tela" title="Tela usada para a projeção"></select>
+  <button id="btnAlternar"></button>
+</header>
+
+<main>
+  <section id="colLivros">
+    <input id="filtroLivro" type="text" placeholder="Filtrar livro" autocomplete="off" spellcheck="false">
+    <div id="livros" class="lista"></div>
+  </section>
+
+  <section id="colVersos">
+    <div id="tituloCap"></div>
+    <div id="capitulos"></div>
+    <input id="busca" type="text" placeholder="Buscar palavras na Bíblia (Enter)" autocomplete="off" spellcheck="false">
+    <div id="versos" class="lista"></div>
+  </section>
+
+  <section id="colPainel">
+    <div class="rotulo">Pré-visualização <span id="refSel"></span></div>
+    <div class="quadro"><div id="previa"></div></div>
+    <div class="rotulo">Na tela agora <span id="refVivo"></span></div>
+    <div class="quadro vivo" id="quadroVivo"><div id="vivo"></div></div>
+
+    <div class="botoes">
+      <button id="btnAnterior" title="Seta para cima / PageUp">◀ Anterior</button>
+      <button id="btnProjetar" class="primario" title="Enter">Projetar</button>
+      <button id="btnProximo" title="Seta para baixo / PageDown">Próximo ▶</button>
+    </div>
+    <button id="btnLimpar" class="perigo" title="Esc">Limpar tela (Esc)</button>
+
+    <details id="aparencia">
+      <summary>Aparência</summary>
+      <label>Fonte
+        <select id="cfgFonte">
+          <option>Segoe UI</option><option>Arial</option><option>Calibri</option><option>Verdana</option>
+          <option>Tahoma</option><option>Georgia</option><option>Times New Roman</option><option>Cambria</option>
+        </select>
+      </label>
+      <label>Tamanho máximo <input id="cfgTamanho" type="range" min="4" max="18" step="0.5"></label>
+      <label>Alinhamento
+        <select id="cfgAlinhamento">
+          <option value="center">Centralizado</option><option value="left">Esquerda</option><option value="justify">Justificado</option>
+        </select>
+      </label>
+      <label>Cor do texto <input id="cfgCorTexto" type="color"></label>
+      <label>Cor do fundo <input id="cfgCorFundo" type="color"></label>
+      <label>Imagem de fundo
+        <span><button id="btnFundo">Escolher…</button> <button id="btnSemFundo">Remover</button></span>
+      </label>
+      <label class="marcar"><input id="cfgMaiusculas" type="checkbox"> Tudo em maiúsculas</label>
+      <label class="marcar"><input id="cfgVersao" type="checkbox"> Mostrar a versão ao lado da referência</label>
+    </details>
+
+    <div class="rotulo">Histórico</div>
+    <div id="historico" class="lista"></div>
+  </section>
+</main>
+
+<dialog id="dlgBiblias">
+  <h2>Bíblias</h2>
+  <p id="msgBiblias"></p>
+  <h3>Instaladas</h3>
+  <div id="instaladas"></div>
+  <h3>Baixar da internet</h3>
+  <div id="disponiveis"></div>
+  <p class="nota">O download é feito uma única vez; depois o programa funciona sem internet.
+    Você também pode importar outra tradução em arquivo JSON (formato: lista de 66 livros, cada um com
+    <code>chapters</code> = capítulos → versículos). Verifique se a sua igreja tem permissão para usar a tradução escolhida.</p>
+  <div class="botoes">
+    <button id="btnImportar">Importar arquivo…</button>
+    <button id="btnFecharBiblias" class="primario">Fechar</button>
+  </div>
+</dialog>
+
+<script src="livros.js"></script>
+<script src="slide.js"></script>
+<script src="controle.js"></script>
+</body>
+</html>

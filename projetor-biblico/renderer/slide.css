@@ -1,0 +1,33 @@
+.slide {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  text-shadow: 0 0.04em 0.12em rgba(0, 0, 0, 0.75);
+}
+.slide-caixa {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.slide-texto {
+  width: 100%;
+  line-height: 1.25;
+  font-weight: 600;
+}
+.slide-texto sup {
+  font-size: 0.5em;
+  opacity: 0.75;
+  margin-right: 0.25em;
+}
+.slide-ref {
+  text-align: right;
+  font-weight: 700;
+  opacity: 0.9;
+  white-space: nowrap;
+}

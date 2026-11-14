@@ -1,0 +1,29 @@
+name: Projetor Bíblico (Windows)
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'projetor-biblico/**'
+      - '.github/workflows/projetor-biblico.yml'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: projetor-biblico
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: projetor-biblico/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run dist -- --publish never
+      - uses: actions/upload-artifact@v4
+        with:
+          name: projetor-biblico-windows
+          path: projetor-biblico/dist/*.exe

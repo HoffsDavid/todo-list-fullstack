@@ -1,0 +1,25 @@
+{
+  "name": "projetor-biblico",
+  "version": "1.0.0",
+  "description": "Projetor de versículos bíblicos para a segunda tela",
+  "main": "src/main.js",
+  "author": "Igreja",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test",
+    "dist": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "br.igreja.projetorbiblico",
+    "productName": "Projetor Bíblico",
+    "files": ["src/**", "renderer/**", "package.json"],
+    "win": { "target": ["nsis", "portable"] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "portable": { "artifactName": "ProjetorBiblico-portatil.exe" }
+  }
+}

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' file: data:; style-src 'self' 'unsafe-inline'">
+<title>Projeção</title>
+<link rel="stylesheet" href="slide.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; cursor: none; }
+  #slide { width: 100vw; height: 100vh; }
+  #slide > * { animation: surgir 0.25s ease-out; }
+  @keyframes surgir { from { opacity: 0; } to { opacity: 1; } }
+</style>
+</head>
+<body>
+<div id="slide"></div>
+<script src="slide.js"></script>
+<script src="projecao.js"></script>
+</body>
+</html>

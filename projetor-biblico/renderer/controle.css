@@ -1,0 +1,85 @@
+:root {
+  --fundo: #16181d;
+  --painel: #1f2229;
+  --borda: #343944;
+  --texto: #e6e8ec;
+  --fraco: #9aa1ad;
+  --destaque: #3b82f6;
+  --vivo: #e5484d;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: flex; flex-direction: column;
+  background: var(--fundo); color: var(--texto);
+  font: 14px "Segoe UI", system-ui, sans-serif;
+  user-select: none;
+}
+button, select, input[type=text] {
+  font: inherit; color: var(--texto);
+  background: var(--painel); border: 1px solid var(--borda); border-radius: 6px;
+  padding: 6px 10px;
+}
+button { cursor: pointer; }
+button:hover { border-color: var(--fraco); }
+button.primario { background: var(--destaque); border-color: var(--destaque); color: #fff; font-weight: 600; }
+button.perigo { background: #3a1d1f; border-color: #6b2c30; }
+input[type=text]:focus, select:focus, button:focus-visible { outline: 2px solid var(--destaque); outline-offset: -1px; }
+
+header {
+  display: flex; gap: 8px; align-items: center;
+  padding: 8px 10px; border-bottom: 1px solid var(--borda); background: var(--painel);
+}
+header select, header button { background: var(--fundo); }
+#rapida { width: 320px; background: var(--fundo); }
+.espaco { flex: 1; }
+
+main { flex: 1; min-height: 0; display: grid; grid-template-columns: 190px 1fr 380px; }
+section { min-height: 0; display: flex; flex-direction: column; gap: 8px; padding: 10px; }
+section + section { border-left: 1px solid var(--borda); }
+.lista { flex: 1; min-height: 0; overflow-y: auto; }
+
+#livros div { padding: 4px 8px; border-radius: 5px; cursor: pointer; white-space: nowrap; }
+#livros div:hover { background: var(--painel); }
+#livros div.ativo { background: var(--destaque); color: #fff; }
+#livros div.nt-inicio { margin-top: 8px; border-top: 1px solid var(--borda); padding-top: 8px; border-radius: 0 0 5px 5px; }
+
+#tituloCap { font-size: 18px; font-weight: 700; }
+#capitulos { display: flex; flex-wrap: wrap; gap: 4px; max-height: 132px; overflow-y: auto; flex-shrink: 0; }
+#capitulos button { width: 38px; padding: 4px 0; }
+#capitulos button.ativo { background: var(--destaque); border-color: var(--destaque); color: #fff; }
+
+#versos { background: var(--painel); border: 1px solid var(--borda); border-radius: 6px; }
+#versos .verso { display: flex; gap: 10px; padding: 7px 10px; cursor: pointer; font-size: 15px; line-height: 1.4; border-left: 4px solid transparent; }
+#versos .verso:hover { background: #272b34; }
+#versos .verso b { color: var(--fraco); min-width: 26px; text-align: right; flex-shrink: 0; }
+#versos .verso.sel { background: #1e3358; }
+#versos .verso.vivo { border-left-color: var(--vivo); }
+#versos .verso .onde { color: var(--destaque); font-weight: 600; min-width: 120px; flex-shrink: 0; }
+#versos .vazio { padding: 30px; text-align: center; color: var(--fraco); line-height: 1.6; }
+
+.rotulo { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fraco); }
+.rotulo span { color: var(--texto); text-transform: none; letter-spacing: 0; margin-left: 6px; }
+.quadro { border: 2px solid var(--borda); border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+.quadro > div { width: 100%; aspect-ratio: 16 / 9; }
+.quadro.vivo.ativo { border-color: var(--vivo); }
+.botoes { display: flex; gap: 6px; }
+.botoes button { flex: 1; padding: 9px 4px; }
+
+details { border: 1px solid var(--borda); border-radius: 6px; padding: 6px 10px; flex-shrink: 0; }
+summary { cursor: pointer; color: var(--fraco); }
+details label { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; }
+details label.marcar { justify-content: flex-start; }
+details select, details input[type=range] { width: 170px; }
+details input[type=color] { width: 50px; height: 28px; padding: 0; border: 1px solid var(--borda); background: none; }
+
+#historico div { padding: 4px 8px; border-radius: 5px; cursor: pointer; }
+#historico div:hover { background: var(--painel); }
+
+dialog { background: var(--painel); color: var(--texto); border: 1px solid var(--borda); border-radius: 10px; width: 520px; padding: 20px; }
+dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
+dialog h2 { margin: 0 0 8px; }
+dialog h3 { margin: 16px 0 6px; font-size: 13px; color: var(--fraco); text-transform: uppercase; }
+dialog .linha { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; }
+dialog .nota { color: var(--fraco); font-size: 12.5px; line-height: 1.5; }
+#msgBiblias { color: #f5b041; min-height: 1em; margin: 0; }
